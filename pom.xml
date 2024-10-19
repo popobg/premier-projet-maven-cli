@@ -16,11 +16,6 @@
     <junit.version>3.8.1</junit.version>
   </properties>
 
-  <build>
-<!-- change le nom du livrable .jar généré par Maven -->
-    <finalName>${project.artifactId}</finalName>
-  </build>
-
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -40,4 +35,41 @@
       <version>1.5.11</version>
     </dependency>
   </dependencies>
+
+  <build>
+    <!-- nom du livrable .jar généré par Maven : ici il prend le nom de l'artefactId du projet -->
+    <finalName>${project.artifactId}</finalName>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <archive>
+            <!-- plugin nécessaire pour indiquer la méthode main à exécuter au lancement du jar -->
+            <manifest>
+              <mainClass>dev.App</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      <!-- Configuration du plugin shade -->
+      <!-- permet de créer un uber-jar qui contient le package + les dépendances dans un seul fichier jar. -->
+      <!-- c'est l'uber-jar qu'on distribue pour que les destinataires n'aient pas à se soucier d'installer les dépendances. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>
