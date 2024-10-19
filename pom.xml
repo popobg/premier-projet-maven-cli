@@ -11,6 +11,7 @@
   <url>http://maven.apache.org</url>
 
   <properties>
+    <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <junit.version>3.8.1</junit.version>
   </properties>
@@ -26,6 +27,17 @@
       <artifactId>junit</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.github.lalyos</groupId>
+      <artifactId>jfiglet</artifactId>
+      <version>0.0.9</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.5.11</version>
     </dependency>
   </dependencies>
 </project>
